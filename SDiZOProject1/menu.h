@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "Array.h"
+#include "List.h"
 
 using namespace std;
 

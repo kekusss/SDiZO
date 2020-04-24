@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "Array.h"
 
 Menu::Menu() {
 	mainMenu();
@@ -67,7 +66,7 @@ void Menu::menuArray() {
 	do {
 		displayMenu("--- TABLICA ---");
 		cin >> choice;
-		//system("cls");
+		system("cls");
 
 		switch (choice) {
 		case '1': //wczytywanie z pliku
@@ -97,11 +96,12 @@ void Menu::menuArray() {
 			cout << "Podaj wartosc ktora ma byc sprawdzona: ";
 			cin >> value;
 			if (array.findElement(value)) {
-				cout << "Podana wartosc jest w tablicy" << endl;
+				cout << "Podana wartosc jest w tablicy \n";
 			}
 			else {
-				cout << "Podanej wartosci nie ma w tablicy" << endl;
+				cout << "Podanej wartosci nie ma w tablicy \n";
 			}
+			array.show();
 			break;
 
 		case '5': //generowanie tablicy
@@ -117,6 +117,7 @@ void Menu::menuArray() {
 			break;
 
 		case '7': // test
+			array.makeTests();
 			break;
 		}
 
@@ -124,49 +125,62 @@ void Menu::menuArray() {
 }
 
 void Menu::menuList() {
+	List list = List();
+
 	do {
 		displayMenu("--- LISTA ---");
-
 		cin >> choice;
 		system("cls");
 
 		switch (choice) {
-		case '1': //tutaj wczytywanie  tablicy z pliku
+		case '1': // wczytywanie listy z pliku
 			cout << "Podaj nazwe pliku:";
 			cin >> fileName;
+			list.readFromFile(fileName);
+			list.show();
 			break;
 
-		case '2': {//tutaj generowanie  tablicy
-			cout << "Podaj ilosc elementow tablicy:";
-			cin >> amount;
+		case '2': {// usuwanie elementu listy
+			cout << "Podaj wartosc ktora chcesz usunac:";
+			cin >> value;
+			list.remove(value);
+			list.show();
 			break;
 		}
-		case '3': //tutaj dodawanie elemetu do tablicy
+		case '3': // dodawanie elementu do listy
 			cout << "Podaj index: ";
 			cin >> index;
 			cout << "Podaj wartosc: ";
 			cin >> value;
+			list.addElement(value, index);
+			list.show();
 			break;
 
-		case '4': //tutaj usuwanie elemenu z tablicy
-			cout << "Podaj index:";
-			cin >> index;
-
-			break;
-
-		case '5': //tutaj znajdowanie elemetu w tablicy
-			cout << "Podaj wartosc: ";
+		case '4': // tutaj znajdowanie elemetu w tablicy
+			cout << "Podaj szukana wartosc:";
 			cin >> value;
-			if (1)
-				cout << "Podana wartosc jest w tablicy" << endl;
-			else
-				cout << "Podanej wartosci NIE ma w tablicy" << endl;
+			if (list.findElement(value)) {
+				cout << "Podana wartosc znajduje sie na liscie \n";
+			}
+			else {
+				cout << "Podana wartosc nie znajduje sie na liscie \n";
+			}
+			list.show();
 			break;
 
-		case '6':
+		case '5': // generowanie losowej listy
+			cout << "Podaj ilosc elementow listy:";
+			cin >> amount;
+			list.makeExample(amount);
+			list.show();
+			break;
+
+		case '6': // wyswietlanie listy
+			list.show();
 			break;
 
 		case '7':
+			list.makeTests();
 			break;
 		}
 	} while (choice != '0');

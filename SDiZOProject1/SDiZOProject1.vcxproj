@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BSTTree.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BSTTree.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />

@@ -4,35 +4,34 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <time.h>
+#include <string>
+#include "Clock.h"
 
 using namespace std;
+
+struct Element {
+	Element* next, * prev;
+	int value;
+};
 
 class List
 {
 private:
-	int* head, tail;
-	int element, size;
+	Element *head, *tail;
+	int size;
 
 public:
 	List();
 	~List();
 
 	int getSize();
-
 	void show();
 	void readFromFile(string fileName);
-
-	void addElementFirst(int element);
-	void addElementLast(int element);
 	void addElement(int element, int index);
-
-	void removeFirst();
-	void removeLast();
-	void remove(int index);
-
-	int findElement(int value);
+	void remove(int value);
+	bool findElement(int value);
 	void makeExample(int eSize);
 	void makeTests();
-
 };
 
