@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "Array.h"
 
 Menu::Menu() {
 	mainMenu();
@@ -20,7 +21,7 @@ int Menu::mainMenu() {
 
 		switch (choice) {
 		case '1':
-			menuTable();
+			menuArray();
 			break;
 
 		case '2':
@@ -42,6 +43,7 @@ int Menu::mainMenu() {
 		system("cls");
 		choice = 0; // umo¿liwia kontynuacjê pêtli po powrocie z "podmenu"
 	} while (choice != '0');
+	return 0;
 }
 
 
@@ -59,49 +61,62 @@ void Menu::displayMenu(string info) {
 	cout << "Podaj opcje:";
 }
 
-void Menu::menuTable() {
-	//Table table;
+void Menu::menuArray() {
+	Array array;
+
 	do {
 		displayMenu("--- TABLICA ---");
 		cin >> choice;
-		system("cls");
+		//system("cls");
+
 		switch (choice) {
-		case '1': //tutaj wczytywanie  tablicy z pliku
+		case '1': //wczytywanie z pliku
 			cout << "Podaj nazwe pliku:";
 			cin >> fileName;
+			array.readFromFile(fileName);
+			array.show();
 			break;
 
-		case '2': {//tutaj generowanie  tablicy
-			cout << "Podaj ilosc elementow tablicy:";
-			cin >> amount;
+		case '2': {//usuwanie elementu
+			cout << "Podaj index elementu:";
+			cin >> index;
+			array.remove(index);
+			array.show();
 			break;
 		}
-		case '3': //tutaj dodawanie elemetu do tablicy
+		case '3': //dodawanie elementu
 			cout << "Podaj index: ";
 			cin >> index;
 			cout << "Podaj wartosc: ";
 			cin >> value;
+			array.addElement(value, index);
+			array.show();
 			break;
 
-		case '4': //tutaj usuwanie elemenu z tablicy
-			cout << "Podaj index:";
-			cin >> index;
-
-			break;
-
-		case '5': //tutaj znajdowanie elemetu w tablicy
-			cout << "Podaj wartosc: ";
+		case '4': //sprawdzanie czy istnieje w tablicy
+			cout << "Podaj wartosc ktora ma byc sprawdzona: ";
 			cin >> value;
-			if (1)
+			if (array.findElement(value)) {
 				cout << "Podana wartosc jest w tablicy" << endl;
-			else
-				cout << "Podanej wartosci NIE ma w tablicy" << endl;
+			}
+			else {
+				cout << "Podanej wartosci nie ma w tablicy" << endl;
+			}
 			break;
 
-		case '6':
+		case '5': //generowanie tablicy
+			cout << "Podaj ilosc elementow nowej tablicy:";
+			cin >> amount;
+
+			array.makeExample(amount);
+			array.show();
 			break;
 
-		case '7':
+		case '6': // wyœwietlanie
+			array.show();
+			break;
+
+		case '7': // test
 			break;
 		}
 

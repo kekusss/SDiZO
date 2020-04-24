@@ -16,7 +16,7 @@ private:
 	int mainMenu();
 	void displayMenu(string info);
 
-	void menuTable();
+	void menuArray();
 	void menuList();
 	void menuHeap();
 	void menuBSTTree();
