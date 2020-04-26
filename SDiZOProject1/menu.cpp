@@ -4,6 +4,9 @@ Menu::Menu() {
 	mainMenu();
 }
 
+/*
+Glowne menu
+*/
 int Menu::mainMenu() {
 	do {
 		cout << endl;
@@ -45,7 +48,9 @@ int Menu::mainMenu() {
 	return 0;
 }
 
-
+/*
+podmenu z mozliwymi akcjami dla kazdej struktury
+*/
 void Menu::displayMenu(string info) {
 	cout << endl;
 	cout << info << endl;
@@ -59,6 +64,11 @@ void Menu::displayMenu(string info) {
 	cout << "0.Powrot do menu" << endl;
 	cout << "Podaj opcje:";
 }
+
+/*
+Zawiera akcje wykonywane po wybraniu danej opcji w menu, dla wszystkich struktur
+*/
+#pragma region AllStructuresMenus
 
 void Menu::menuArray() {
 	Array array;
@@ -156,7 +166,7 @@ void Menu::menuList() {
 			list.show();
 			break;
 
-		case '4': // tutaj znajdowanie elemetu w tablicy
+		case '4': // sprawdza czy szukana wartosc znajduje sie na liscie
 			cout << "Podaj szukana wartosc:";
 			cin >> value;
 			if (list.findElement(value)) {
@@ -187,49 +197,60 @@ void Menu::menuList() {
 }
 
 void Menu::menuHeap() {
+	Heap heap = Heap(100000);
 	do {
 		displayMenu("--- KOPIEC ---");
 
 		cin >> choice;
-		system("cls");
+		//system("cls");
 
 		switch (choice) {
-		case '1': //tutaj wczytywanie  tablicy z pliku
+		case '1': // wczytywanie kopca z pliku
 			cout << "Podaj nazwe pliku:";
 			cin >> fileName;
+			heap.readFromFile(fileName);
+			heap.show();
 			break;
 
-		case '2': {//tutaj generowanie  tablicy
-			cout << "Podaj ilosc elementow tablicy:";
-			cin >> amount;
+		case '2': {// usuwanie elementu z kopca
+			cout << "Podaj wartosc ktora chcesz usunac:";
+			cin >> value;
+			heap.remove(value);
+			heap.show();
 			break;
 		}
-		case '3': //tutaj dodawanie elemetu do tablicy
-			cout << "Podaj index: ";
-			cin >> index;
+		case '3': // dodawanie elementu do kopca
 			cout << "Podaj wartosc: ";
 			cin >> value;
+			heap.add(value);
+			heap.show();
 			break;
 
-		case '4': //tutaj usuwanie elemenu z tablicy
-			cout << "Podaj index:";
-			cin >> index;
-
-			break;
-
-		case '5': //tutaj znajdowanie elemetu w tablicy
-			cout << "Podaj wartosc: ";
+		case '4': // sprawdza czy szukana wartosc znajduje sie w kopcu
+			cout << "Podaj szukana wartosc:";
 			cin >> value;
-			if (1)
-				cout << "Podana wartosc jest w tablicy" << endl;
-			else
-				cout << "Podanej wartosci NIE ma w tablicy" << endl;
+			if (heap.findElement(value) != -1) {
+				cout << "Podana wartosc znajduje sie w kopcu \n";
+			}
+			else {
+				cout << "Podana wartosc nie znajduje sie w kopcu \n";
+			}
+			heap.show();
 			break;
 
-		case '6':
+		case '5': // generowanie losowej listy
+			cout << "Podaj ilosc elementow kopca:";
+			cin >> amount;
+			heap.makeExample(amount,100000);
+			heap.show();
 			break;
 
-		case '7':
+		case '6': // wyswietlanie kopca
+			heap.show();
+			break;
+
+		case '7': // testy
+			heap.makeTests();
 			break;
 		}
 	} while (choice != '0');
@@ -283,3 +304,5 @@ void Menu::menuBSTTree() {
 		}
 	} while (choice != '0');
 }
+
+#pragma endregion

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <time.h>
+#include "Clock.h"
 
 using namespace std;
 
@@ -26,9 +27,6 @@ public:
 	void addElementLast(int element);
 	void addElement(int element, int index);
 
-	void removeValue(int value);
-	void removeFirst();
-	void removeLast();
 	void remove(int index);
 
 	bool findElement(int value);

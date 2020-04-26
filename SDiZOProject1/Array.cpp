@@ -193,3 +193,7 @@ void Array::makeExample(int eSize){
 		elementPtr[i] = rand() % 1000;
 	}
 }
+
+void Array::makeTests() {
+	cout << "test \n";
+}

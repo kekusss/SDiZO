@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Array.h"
 #include "List.h"
+#include "Heap.h"
 
 using namespace std;
 
