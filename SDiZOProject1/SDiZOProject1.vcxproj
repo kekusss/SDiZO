@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BSTTree.cpp" />
+    <ClCompile Include="BSTree.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="List.cpp" />
@@ -156,7 +156,7 @@
     <ClCompile Include="Array.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BSTTree.h" />
+    <ClInclude Include="BSTree.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="List.h" />

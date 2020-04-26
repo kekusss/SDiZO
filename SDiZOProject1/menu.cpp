@@ -202,7 +202,7 @@ void Menu::menuHeap() {
 		displayMenu("--- KOPIEC ---");
 
 		cin >> choice;
-		//system("cls");
+		system("cls");
 
 		switch (choice) {
 		case '1': // wczytywanie kopca z pliku
@@ -257,49 +257,72 @@ void Menu::menuHeap() {
 }
 
 void Menu::menuBSTTree() {
+
+	BSTree bst;
+
+	bst.cr = bst.cl = bst.cp = "  ";
+	bst.cr[0] = 218; bst.cr[1] = 196;
+	bst.cl[0] = 192; bst.cl[1] = 196;
+	bst.cp[0] = 179;
+
 	do {
-		displayMenu("--- DRZEWO BST ---");
+		displayMenu("--- DRZEWO BST ---\n8.Poziomowanie DSW");
 
 		cin >> choice;
 		system("cls");
 
 		switch (choice) {
-		case '1': //tutaj wczytywanie  tablicy z pliku
+		case '1': // wczytywanie drzewa z pliku
 			cout << "Podaj nazwe pliku:";
 			cin >> fileName;
+			bst.readFromFile(fileName);
+			bst.show("  ", "==", bst.getRoot());
 			break;
 
-		case '2': {//tutaj generowanie  tablicy
-			cout << "Podaj ilosc elementow tablicy:";
-			cin >> amount;
+		case '2': {// usuwanie elementu z drzewa
+			cout << "Podaj wartosc ktora chcesz usunac:";
+			cin >> value;
+			bst.removeElement(value);
+			bst.show("  ", "==", bst.getRoot());
 			break;
 		}
-		case '3': //tutaj dodawanie elemetu do tablicy
-			cout << "Podaj index: ";
-			cin >> index;
+		case '3': // dodawanie elementu do drzewa
 			cout << "Podaj wartosc: ";
 			cin >> value;
+			bst.addElement(value);
+			bst.show("  ", "==", bst.getRoot());
 			break;
 
-		case '4': //tutaj usuwanie elemenu z tablicy
-			cout << "Podaj index:";
-			cin >> index;
-
-			break;
-
-		case '5': //tutaj znajdowanie elemetu w tablicy
-			cout << "Podaj wartosc: ";
+		case '4': // sprawdza czy szukana wartosc znajduje sie w drzewie
+			cout << "Podaj szukana wartosc:";
 			cin >> value;
-			if (1)
-				cout << "Podana wartosc jest w tablicy" << endl;
-			else
-				cout << "Podanej wartosci NIE ma w tablicy" << endl;
+			if (bst.findElement(bst.getRoot(), value) != nullptr) {
+				cout << "Podana wartosc znajduje sie w drzewie \n";
+			}
+			else {
+				cout << "Podana wartosc nie znajduje sie w drzewie \n";
+			}
+			bst.show("  ", "==", bst.getRoot());
 			break;
 
-		case '6':
+		case '5': // generowanie losowego drzewa
+			cout << "Podaj ilosc elementow drzewa:";
+			cin >> amount;
+			bst.makeExample(amount);
+			bst.show("  ", "==", bst.getRoot());
 			break;
 
-		case '7':
+		case '6': // wyswietlanie drzewa
+			bst.show("  ","==",bst.getRoot());
+			break;
+
+		case '7': // testy
+			bst.makeTests();
+			break;
+
+		case '8':
+			bst.rebalance();
+			bst.show("  ", "==", bst.getRoot());
 			break;
 		}
 	} while (choice != '0');

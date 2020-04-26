@@ -4,6 +4,7 @@
 #include "Array.h"
 #include "List.h"
 #include "Heap.h"
+#include "BSTree.h"
 
 using namespace std;
 
