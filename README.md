@@ -6,6 +6,6 @@ Project implements basic data structures and operations for them
   <li>Array</li>
   <li>Doubly Linked List</li>
   <li>Heap</li>
-  <li><Binary Search Tree with DSW</li>
+  <li>Binary Search Tree with DSW balancing</li>
 </ul>
   
