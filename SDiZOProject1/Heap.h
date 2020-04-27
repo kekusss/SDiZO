@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class Heap
-{
+class Heap{
 private:
 	int size;
 	int maxSize;

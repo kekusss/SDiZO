@@ -12,6 +12,7 @@ struct Node {
 };
 
 class BSTree{
+private:
 	int size;
 	Node* root;
 
