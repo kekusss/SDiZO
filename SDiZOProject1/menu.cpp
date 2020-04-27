@@ -35,7 +35,7 @@ int Menu::mainMenu() {
 			break;
 
 		case '4':
-			menuBSTTree();
+			menuBSTree();
 			break;
 		case '0':
 			system("pause");
@@ -197,7 +197,11 @@ void Menu::menuList() {
 }
 
 void Menu::menuHeap() {
-	Heap heap = Heap(100000);
+
+	//okreœla nadmiarowy rozmiar kopca
+	const int MAXSIZE = 1000001;
+	Heap heap = Heap(MAXSIZE);
+
 	do {
 		displayMenu("--- KOPIEC ---");
 
@@ -241,7 +245,7 @@ void Menu::menuHeap() {
 		case '5': // generowanie losowej listy
 			cout << "Podaj ilosc elementow kopca:";
 			cin >> amount;
-			heap.makeExample(amount,100000);
+			heap.makeExample(amount,MAXSIZE);
 			heap.show();
 			break;
 
@@ -250,13 +254,13 @@ void Menu::menuHeap() {
 			break;
 
 		case '7': // testy
-			heap.makeTests();
+			heap.makeTests(MAXSIZE);
 			break;
 		}
 	} while (choice != '0');
 }
 
-void Menu::menuBSTTree() {
+void Menu::menuBSTree() {
 
 	BSTree bst;
 

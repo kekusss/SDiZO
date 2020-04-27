@@ -195,5 +195,29 @@ void Array::makeExample(int eSize){
 }
 
 void Array::makeTests() {
-	cout << "test \n";
+	Clock clock;
+	int elements = 1;
+	for (int i = 1; i < 8; i++) {
+		makeExample(elements);
+		cout << endl << elements << " elementow: \n";
+
+		clock.beginTest();
+		findElement(10);
+		clock.endTest();
+		cout << " | search: ";
+		clock.displayTime();
+
+		clock.beginTest();
+		addElement(10, elements);
+		clock.endTest();
+		cout << " | add: ";
+		clock.displayTime();
+
+		clock.beginTest();
+		remove(10);
+		clock.endTest();
+		cout << " | remove: ";
+		clock.displayTime();
+		elements *= 10;
+	}
 }

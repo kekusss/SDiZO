@@ -23,6 +23,6 @@ private:
 	void menuArray();
 	void menuList();
 	void menuHeap();
-	void menuBSTTree();
+	void menuBSTree();
 };
 

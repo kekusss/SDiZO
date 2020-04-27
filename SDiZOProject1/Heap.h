@@ -33,6 +33,6 @@ public:
 	void fixUp(int index);
 
 	void makeExample(int size, int maxSize);
-	void makeTests();
+	void makeTests(int maxSize);
 };
 

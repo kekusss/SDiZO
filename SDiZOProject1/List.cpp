@@ -176,13 +176,28 @@ Przeprowadza testy
 */
 void List::makeTests() {
 	Clock clock;
-	makeExample(1);
-	addElement(640000, 1);
+	int elements = 1;
+	for (int i = 1; i < 8; i++) {
+		makeExample(elements);
+		cout << endl << elements << " elementow: \n";
 
-	clock.beginTest();
-	findElement(640000);
-	clock.endTest();
+		clock.beginTest();
+		findElement(10);
+		clock.endTest();
+		cout << " | search: ";
+		clock.displayTime();
 
-	cout << "1 element: ";
-	clock.displayTime();
+		clock.beginTest();
+		addElement(10, elements);
+		clock.endTest();
+		cout << " | add: ";
+		clock.displayTime();
+
+		clock.beginTest();
+		remove(10);
+		clock.endTest();
+		cout << " | remove: ";
+		clock.displayTime();
+		elements *= 10;
+	}
 }

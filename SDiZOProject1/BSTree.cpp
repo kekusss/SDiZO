@@ -60,7 +60,6 @@ Node* BSTree::findElement(Node* node, int value) {
 			node = node->rightChild;
 		}
 	}
-
 	return node;
 }
 
@@ -139,6 +138,9 @@ void BSTree::addElement(int value) {
 		}
 	}
 	tmp->parent = node;
+
+	//balansowanie drzewa po dodaniu elementu
+	rebalance();
 }
 
 /*
@@ -148,6 +150,9 @@ Node* BSTree::removeElement(int value) {
 	Node* node = removeNode(findElement(root, value));
 	size--;
 	return node;
+
+	//balansowanie drzewa po wykonaniu usuwania
+	rebalance();
 }
 
 /*
@@ -412,9 +417,34 @@ void BSTree::makeExample(int size) {
 przeprowadza testy
 */
 void BSTree::makeTests() {
+	Clock clock;
+	int elements = 1;
+	for (int i = 1; i < 8; i++) {
+		makeExample(elements);
+		cout << endl << elements << " elementow: \n";
 
+		clock.beginTest();
+		findElement(root,10);
+		clock.endTest();
+		cout << " | search: ";
+		clock.displayTime();
+
+		clock.beginTest();
+		addElement(10);
+		clock.endTest();
+		cout << " | add: ";
+		clock.displayTime();
+
+		clock.beginTest();
+		removeElement(10);
+		clock.endTest();
+		cout << " | remove: ";
+		clock.displayTime();
+		elements *= 10;
+	}
 }
 
+//oblicza szybko wartoœæ log2
 unsigned log2(unsigned x){
 	unsigned y = 1;
 	while ((x >>= 1) > 0) y <<= 1;

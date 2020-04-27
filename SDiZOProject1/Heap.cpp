@@ -169,15 +169,30 @@ void Heap::makeExample(int size, int maxSize) {
 /*
 Przeprowadza testy
 */
-void Heap::makeTests() {
+void Heap::makeTests(int maxSize) {
 	Clock clock;
-	makeExample(1,1);
-	add(640000);
+	int elements = 1;
+	for (int i = 1; i < 8; i++) {
+		makeExample(elements,maxSize);
+		cout << endl << elements << " elementow: \n";
 
-	clock.beginTest();
-	findElement(640000);
-	clock.endTest();
+		clock.beginTest();
+		findElement(10);
+		clock.endTest();
+		cout << " | search: ";
+		clock.displayTime();
 
-	cout << "1 element: ";
-	clock.displayTime();
+		clock.beginTest();
+		add(10);
+		clock.endTest();
+		cout << " | add: ";
+		clock.displayTime();
+
+		clock.beginTest();
+		remove(10);
+		clock.endTest();
+		cout << " | remove: ";
+		clock.displayTime();
+		elements *= 10;
+	}
 }
